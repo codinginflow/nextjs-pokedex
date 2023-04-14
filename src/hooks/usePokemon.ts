@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 
 export default function usePokemon(name: string) {
 
-    const { data, isLoading } = useSWR(name, async () => {
+    const { data, isLoading, mutate } = useSWR(name, async () => {
         try {
             return await PokemonApi.getPokemon(name);
         } catch (error) {
@@ -19,5 +19,6 @@ export default function usePokemon(name: string) {
     return {
         pokemon: data,
         pokemonLoading: isLoading,
+        mutatePokemon: mutate,
     }
 }
